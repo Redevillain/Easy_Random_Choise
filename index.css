@@ -1,0 +1,14 @@
+* {
+    margin: 10px;
+}
+
+textarea {
+    font-size: 1.5em;
+}
+
+#for_answer {
+    margin-left: 800px;
+    margin-top: -400px;
+    font-size: 3.5em;
+    position: absolute;
+}
