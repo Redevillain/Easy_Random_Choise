@@ -6,9 +6,16 @@ let turn = 0;
 function filldata() {
     answer.innerText="";
     spisok.innerText="";
-    turn=0;   
+    turn=0;
+
     let names_raw = container.value;
     names = names_raw.split("\n");
+    for(let i=0;i<names.length;i++)
+    {
+        if(names[i]===""||names[i]===" ")
+            names.splice(i, 1);
+    }
+
     is_ok = true;
     resize();
     return 1;

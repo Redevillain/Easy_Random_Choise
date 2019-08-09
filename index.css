@@ -26,7 +26,6 @@
 
 /*Область вворда текста*/
 textarea {
-    border-radius: 15px;
     font-size: 1.4em;
 }
 /*-------------------------*/
@@ -48,7 +47,6 @@ textarea {
 /*Кнопки*/
 button {
     font-size: 1.1em;
-    border-radius: 10px;
     background-color: white;
 }
 
