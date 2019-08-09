@@ -8,17 +8,28 @@
     <link rel="stylesheet" type="text/css" media="screen" href="index.css">
 </head>
 <body>
-    <textarea style=" width:500px; height:600px;" id="input" placeholder="Введите фамилии:" wrap="soft">
-            </textarea>
-                <br>
-                <button id="fill_data">Заполнить данные</button>
-                <br>
-                <button id="get_result">Получить</button>
-                <br>
-    <div id="container" style="text-align: center;">
- 
-        <h1 id="for_answer"></h1>
+
+    <div class="background">
     </div>
+    <img class="image" src="img/DONM.png">
+
+
+    <div>
+    <textarea  id="input" wrap="soft"></textarea>
+    <button id="hide_input">-</button>
+    </div>
+
+    <div>
+        <button id="fill_data">Заполнить данные</button>
+        <br>
+        <button id="get_result">Получить результат</button>
+        <br>
+        <button id="hide_input2">>></button>
+        <p id="spisok"></p>
+    </div>
+
+    <h1 id="for_answer"></h1>   
+
     <script type="text/javascript" src="index.js"></script>
 </body>
 </html>

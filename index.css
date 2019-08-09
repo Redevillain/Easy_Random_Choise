@@ -1,14 +1,59 @@
+/*отступ для всех элементов*/
 * {
     margin: 10px;
 }
+/*-------------------------*/
 
+/*задник градиент и изображение в углу*/
+.background {
+    position: fixed;
+    width: 140%;
+    height: 120%;
+    margin-left: -20%;
+    margin-top: -10%;
+    background: linear-gradient(to bottom, rgb(98, 154, 226), rgb(255, 255, 255));
+    z-index: -2;
+}
+.image {
+    position: fixed;
+    width: 25%;
+    height: 31%;
+    bottom: 10px;
+    right: 30px;
+}
+/*------------------------------------*/
+
+
+/*Область вворда текста*/
 textarea {
-    font-size: 1.5em;
+    border-radius: 15px;
+    font-size: 1.4em;
+}
+/*-------------------------*/
+
+/*Вывод ответов*/
+#for_answer {
+    bottom: 50%;
+    right: 28%;
+    font-size: 3.3em;
+    position: fixed;
 }
 
-#for_answer {
-    margin-left: 800px;
-    margin-top: -400px;
-    font-size: 3.5em;
-    position: absolute;
+#spisok {
+    font-size: 1.2em;
+    display: none;
 }
+/*-------------------------*/
+
+/*Кнопки*/
+button {
+    font-size: 1.1em;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#hide_input {
+    display: block;
+    position: relative;
+}
+/*-------------------------*/
