@@ -73,7 +73,7 @@ function get_voprosi() {
     }
     
     let idd = Math.floor(Math.random() * for_voprosi.length);
-    answer.innerHTML = "Отвечает: <br>" + for_voprosi[idd];
+    answer.innerHTML = "Комментирует: <br>" + for_voprosi[idd];
     for_voprosi.splice(idd, 1);
     return 1;
 }
