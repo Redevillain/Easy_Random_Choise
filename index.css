@@ -1,4 +1,4 @@
-/*отступ для всех элементов*/
+﻿/*отступ для всех элементов*/
 * {
     margin: 10px;
 }
@@ -26,17 +26,17 @@
 
 /*Область вворда текста*/
 textarea {
-    border-radius: 15px;
     font-size: 1.4em;
 }
 /*-------------------------*/
 
 /*Вывод ответов*/
 #for_answer {
-    bottom: 50%;
-    right: 28%;
+    text-align: center;
     font-size: 3.3em;
-    position: fixed;
+    position:absolute;
+    width:100%;
+    top:40%;
 }
 
 #spisok {
@@ -48,7 +48,6 @@ textarea {
 /*Кнопки*/
 button {
     font-size: 1.1em;
-    border-radius: 10px;
     background-color: white;
 }
 
