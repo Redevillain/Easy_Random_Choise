@@ -1,12 +1,18 @@
 let names = [];
+let all_names = [];
+let for_voprosi = [];
 let already_choosen = [];
 let is_ok = false;
 let turn = 0;
+let the_chosen_one = -1;
 
 function filldata() {
     answer.innerText="";
     spisok.innerText="";
     turn=0;
+    for_voprosi = [];
+    names = [];
+    all_names = [];
 
     let names_raw = container.value;
     names = names_raw.split("\n");
@@ -18,6 +24,7 @@ function filldata() {
             i=0;
             }
     }
+    all_names = all_names.concat(names);
     container.value="";
     for(i=0;i<names.length;i++)
     {
@@ -34,15 +41,40 @@ function get_rnd() {
         return 1;
     }
     if (names.length === 0) {
-        answer.innerText = "Вариантов больше нет"; 
+        answer.innerText = "Выступающих больше нет"; 
         return 1;
     } 
     turn++;
     let id = Math.floor(Math.random() * names.length);
-    answer.innerText = names[id];
+    for_voprosi = [];
+    the_chosen_one = names[id];
+    for_voprosi = for_voprosi.concat(all_names);
+    for_voprosi.splice(for_voprosi.indexOf(the_chosen_one), 1);
+    answer.innerHTML = "Выступает: <br>"+ names[id];
     already_choosen.push(names[id]);
     spisok.innerHTML += turn+"."+ " " + names[id]+"<br>";
     names.splice(id,1);
+    return 1;
+}
+
+function get_voprosi() {
+    if (is_ok === false) {
+        answer.innerText = "Сначала введите данные";
+        return 1;
+    }
+    if(the_chosen_one === -1)
+    {
+        answer.innerText = "Сначала выберите выступающего";
+        return 1;
+    }
+    if (for_voprosi.length === 0) {
+        answer.innerText = "Отвечающих больше нет";
+        return 1;
+    }
+    
+    let idd = Math.floor(Math.random() * for_voprosi.length);
+    answer.innerHTML = "Отвечает: <br>" + for_voprosi[idd];
+    for_voprosi.splice(idd, 1);
     return 1;
 }
 
@@ -88,13 +120,15 @@ function hide2() {
 let container = document.getElementById("input");
 let spisok = document.getElementById("spisok");
 let btn_fill = document.getElementById("fill_data");
-let btn_get = document.getElementById("get_result");
+let vistuplenie = document.getElementById("get_vistuplenie");
+let voprosi = document.getElementById("get_voprosi");
 let answer = document.getElementById("for_answer");
 let hide_in = document.getElementById("hide_input");
 let hide_in2 = document.getElementById("hide_input2");
 
 btn_fill.onclick = filldata;
-btn_get.onclick = get_rnd;
+vistuplenie.onclick = get_rnd;
+voprosi.onclick = get_voprosi;
 hide_in.onclick = hide;
 hide_in2.onclick = hide2;
 
