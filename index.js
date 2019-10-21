@@ -5,6 +5,42 @@ let already_choosen = [];
 let is_ok = false;
 let turn = 0;
 let the_chosen_one = -1;
+let names_raw = 
+'Пономарева Юлия Александровна,'+ 
+'Лукашевич Сергей Анатольевич,' +
+'Карпухин Алексей Владимирович,'+
+'Донской Виктор Александрович,'+
+'Лукашук Олеся Николаевна,'+
+'Жданова Ирина Дмитриевна,'+
+'Путимцев Дмитрий Александрович,'+
+'Шатунов Сергей Николаевич,'+
+'Зозуля Елена Станиславовна,'+
+'Лепе Павел Леонидович,'+
+'Постульгин Андрей Викторович,'+
+'Родина Надежда Александровна,'+
+'Лотвина Ольга Владимировна,'+
+'Бородин Михаил Вячеславович,'+
+'Иванов Александр Серафимович,'+
+'Кузнецова Елена Валерьевна,'+
+'Лукутин Андрей Владимирович,'+
+'Бондаренко Елена Николаевна,'+
+'Журавлев Алексей Игоревич,'+
+'Ровенский Артем Михайлович,'+
+'Чемирис Наталья Михайловна,'+
+'Затолокин Иван Владимирович,'+
+'Добряков Александр Анатольевич,'+
+'Мельниченко Игорь Иннокентьевич,'+
+'Отке Наталья Вячеславовна,'+
+'Рудюк Виталий Владимирович,'+
+'Середенко Нина Владимировна,'+
+'Фокина Инесса Игоревна,'+
+'Бороненков Алексей Александрович,'+
+'Суханова Ольга Николаевна,'+
+'Федорова Татьяна Олеговна,'+
+'Архипов Олег Владимирович,'+
+'Белых Денис Владиславович,'+
+'Пономарёв Максим Александрович,'+
+'Старицкий Николай Николаевич';
 
 function filldata() {
     answer.innerText="";
@@ -25,10 +61,25 @@ function filldata() {
             }
     }
     all_names = all_names.concat(names);
+    for_voprosi = for_voprosi.concat(all_names);
     container.value="";
     for(i=0;i<names.length;i++)
     {
         container.value+=names[i]+"\n";
+    }
+    is_ok = true;
+    resize();
+    return 1;
+}
+
+function pre_load_fill()
+{
+    names = names_raw.split(",");
+    all_names = all_names.concat(names);
+    for_voprosi = for_voprosi.concat(all_names);
+    container.value = "";
+    for (i = 0; i < names.length; i++) {
+        container.value += names[i] + "\n";
     }
     is_ok = true;
     resize();
@@ -53,7 +104,7 @@ function get_rnd() {
     answer.innerHTML = "Выступает: <br>"+ names[id];
     already_choosen.push(names[id]);
     spisok.innerHTML += turn+"."+ " " + names[id]+"<br>";
-    names.splice(id,1);
+    //names.splice(id,1);
     return 1;
 }
 
@@ -62,19 +113,16 @@ function get_voprosi() {
         answer.innerText = "Сначала введите данные";
         return 1;
     }
-    if(the_chosen_one === -1)
-    {
-        answer.innerText = "Сначала выберите выступающего";
-        return 1;
-    }
     if (for_voprosi.length === 0) {
-        answer.innerText = "Отвечающих больше нет";
+        answer.innerText = "Комментирующих больше нет";
         return 1;
     }
-    
+    let pos="";
+    if (Math.round(Math.random())===1) {pos="За";}
+    else { pos = "Против";}
     let idd = Math.floor(Math.random() * for_voprosi.length);
-    answer.innerHTML = "Комментирует: <br>" + for_voprosi[idd];
-    for_voprosi.splice(idd, 1);
+    answer.innerHTML = "Комментирует: ("+ pos +")<br>" + for_voprosi[idd];
+    //for_voprosi.splice(idd, 1);
     return 1;
 }
 
@@ -133,3 +181,4 @@ hide_in.onclick = hide;
 hide_in2.onclick = hide2;
 
 hide();
+pre_load_fill();
