@@ -32,11 +32,14 @@ textarea {
 
 /*Вывод ответов*/
 #for_answer {
-    text-align: center;
-    font-size: 3.3em;
+    font-size: 3.2em;
     position:absolute;
-    width:95%;
+    width:80%;
+    left: 10%;
+    right: 10%;
     top:40%;
+    text-align: center;
+    margin: auto;
 }
 
 #spisok {

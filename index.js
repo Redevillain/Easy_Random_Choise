@@ -126,6 +126,25 @@ function get_voprosi() {
     return 1;
 }
 
+function get_misl() {
+    if (is_ok === false) {
+        answer.innerText = "Сначала введите данные";
+        return 1;
+    }
+    if (names.length === 0) {
+        answer.innerText = "Выступающих больше нет";
+        return 1;
+    }
+    let id = Math.floor(Math.random() * names.length);
+    for_voprosi = [];
+    the_chosen_one = names[id];
+    for_voprosi = for_voprosi.concat(all_names);
+    for_voprosi.splice(for_voprosi.indexOf(the_chosen_one), 1);
+    answer.innerHTML = names[id];
+    //names.splice(id,1);
+    return 1;
+}
+
 function resize() {
     let max_length=names[0].length;
     for(let i=0;i<names.length-1;i++)
@@ -172,13 +191,14 @@ let vistuplenie = document.getElementById("get_vistuplenie");
 let voprosi = document.getElementById("get_voprosi");
 let answer = document.getElementById("for_answer");
 let hide_in = document.getElementById("hide_input");
-let hide_in2 = document.getElementById("hide_input2");
+let misl = document.getElementById("get_misl");
 
 btn_fill.onclick = filldata;
 vistuplenie.onclick = get_rnd;
 voprosi.onclick = get_voprosi;
 hide_in.onclick = hide;
-hide_in2.onclick = hide2;
+misl.onclick = get_misl;
+//hide_in2.onclick = hide2;
 
 hide();
 pre_load_fill();
