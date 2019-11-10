@@ -104,7 +104,7 @@ function get_rnd() {
     answer.innerHTML = "Выступает: <br>"+ names[id];
     already_choosen.push(names[id]);
     spisok.innerHTML += turn+"."+ " " + names[id]+"<br>";
-    //names.splice(id,1);
+    names.splice(id,1);
     return 1;
 }
 
@@ -135,12 +135,8 @@ function get_misl() {
         answer.innerText = "Выступающих больше нет";
         return 1;
     }
-    let id = Math.floor(Math.random() * names.length);
-    for_voprosi = [];
-    the_chosen_one = names[id];
-    for_voprosi = for_voprosi.concat(all_names);
-    for_voprosi.splice(for_voprosi.indexOf(the_chosen_one), 1);
-    answer.innerHTML = names[id];
+    let id = Math.floor(Math.random() * for_voprosi.length);
+    answer.innerHTML = for_voprosi[id];
     //names.splice(id,1);
     return 1;
 }
