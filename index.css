@@ -41,6 +41,16 @@ textarea {
     text-align: center;
     margin: auto;
 }
+#for_timer {
+    font-size: 3.3em;
+    position:absolute;
+    width:80%;
+    left: 10%;
+    right: 10%;
+    top:60%;
+    text-align: center;
+    margin: auto;
+}
 
 #spisok {
     font-size: 1.2em;
@@ -59,3 +69,10 @@ button {
     position: relative;
 }
 /*-------------------------*/
+#input_dir {
+    display: none;
+}
+#input_upr {
+    display: inline;
+    background-color: antiquewhite;
+}
