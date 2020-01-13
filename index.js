@@ -101,7 +101,9 @@ direktora:`
 povtoreniya: false, //флаг на повторения
 is_ok: false, //флаг о заполненных данных
 active_area: "upr", //флаг активной области фамилий
-timer_hidden: false
+timer_hidden: false,
+timer_going: 0,
+timer_started: false
 };
 let timerGO;
 let time = 0;
@@ -138,14 +140,10 @@ function get_uprav() {
         answer.innerText = "Докладчиков больше нет";
         return 1;
     }
-    let id = Math.floor(Math.random() * um.length);
-    /*the_chosen_one = names[id];
-    for_voprosi = for_voprosi.concat(all_names);
-    for_voprosi.splice(for_voprosi.indexOf(the_chosen_one), 1);*/
-    answer.innerHTML = "Выступает: <br>" + um[id];
-   // already_choosen.push(names[id]);
-   // spisok.innerHTML += turn + "." + " " + names[id] + "<br>";
-   // names.splice(id, 1);
+    let the_chosen_one = Math.floor(Math.random() * um.length);
+    answer.innerHTML = "<br>" + um[the_chosen_one];
+    //удаление из списка на рандомный выбор
+    um.splice(the_chosen_one, 1);
     return 1;
 }
 function get_direk() {
@@ -158,14 +156,10 @@ function get_direk() {
         answer.innerText = "Докладчиков больше нет";
         return 1;
     }
-    let id = Math.floor(Math.random() * dm.length);
-    /*the_chosen_one = names[id];
-    for_voprosi = for_voprosi.concat(all_names);
-    for_voprosi.splice(for_voprosi.indexOf(the_chosen_one), 1);*/
-    answer.innerHTML = "Выступает: <br>" + dm[id];
-    // already_choosen.push(names[id]);
-    // spisok.innerHTML += turn + "." + " " + names[id] + "<br>";
-    // names.splice(id, 1);
+    let the_chosen_one = Math.floor(Math.random() * dm.length);
+    answer.innerHTML = "<br>" + dm[the_chosen_one];
+    //удаление из списка на рандомный выбор
+    dm.splice(the_chosen_one, 1);
     return 1;
 }
 
@@ -282,15 +276,36 @@ function timer_fill() {
     time = +length[0]*60 + +length[1];
     min = +length[0];
     sec = +length[1];
+    dannie.timer_going = 0;
+}
+function timer_play_pause() {
+    if(dannie.timer_started===false)
+    {
+        let length = timer_pole.value.split(":");
+        time = +length[0] * 60 + +length[1];
+        min = +length[0];
+        sec = +length[1];
+    }
+    if(dannie.timer_going===0)
+    {
+        dannie.timer_started = true;
+        dannie.timer_going=1;
+        timerGO = window.setInterval(timer_go, 1000);
+    }
+    else if(dannie.timer_going===1) 
+    {
+        dannie.timer_going = 0;
+        setTimeout(clearInterval(timerGO), 100);
+    }
     let minn = "";
     let secc = "";
     if (min < 10) minn = "0" + min;
     else minn = min;
     if (sec < 10) { secc = "0" + sec; }
-    else secc = sec; 
+    else secc = sec;
     time_left.innerHTML = "<br>" + "<h2>" + minn + ":" + secc + "</h2>";
-    timerGO=window.setInterval(timer_go, 1000);
 }
+
 function timer_go() {
     if(sec===0)
     {
@@ -302,7 +317,8 @@ function timer_go() {
     if(sec===0 & min===0)
     {
         time_left.innerHTML = "<br>" +"<h2>Время вышло</h2>";
-        timer_stopp();
+        dannie.timer_going = 0;
+        setTimeout(clearInterval(timerGO), 100);
         return 1;
     }
     let minn ="";
@@ -317,8 +333,16 @@ function timer_go() {
     time_left.innerHTML = "<br>" + "<h2>" + minn + ":" + secc + "</h2>";
 }
 function timer_stopp() {
-    time_left.innerHTML = "<br>" + "<h2>Время вышло</h2>";
-    setTimeout(clearInterval(timerGO), 300);
+    if(dannie.timer_started===false)
+    {
+        time_left.innerHTML = "<br>" + "<h2></h2>";
+        return 1;
+    }
+    dannie.timer_started = false;
+    dannie.timer_going = 0;
+    timer_pole.value="3:00";
+    time_left.innerHTML = "<br>" + "<h2>" + "00" + ":" + "00" + "</h2>";
+    setTimeout(clearInterval(timerGO), 100);
 }
 function hide_timer() {
  if(dannie.timer_hidden===false)
@@ -341,39 +365,35 @@ function hide_timer() {
 
 
 //выбор без таймера
-function level1() {
-    answer.innerHTML = "";
+/*function level1() {
+    answer2.innerHTML = "";
     time_left.innerHTML = "<br><h2></h2>";
     setTimeout(clearInterval(timerGO), 300);
-    timer_button.hidden=true;
-    timer_pole.hidden = true;
-    timer_start.hidden = true;
-    timer_stop.hidden = true;
-    time_left.hidden = true;
-    dannie.timer_hidden = true;
-}
+}*/
 //выбор с таймером
-function level2() {
-    answer.innerHTML = "";
+/*function level2() {
+    answer2.innerHTML = "";
     setTimeout(clearInterval(timerGO), 300);
     time_left.innerHTML = "<br><h2></h2>";
     timer_button.hidden = false;
     timer_pole.value = "3:00";
-}
+}*/
 //по 5 человек
-function level3() {
+/*function level3() {
+    answer2.innerHTML ="";
     setTimeout(clearInterval(timerGO), 300);
     time_left.innerHTML = "<br><h2></h2>";
-    answer.innerHTML = "";
-}
+    
+}*/
 //ответ новокрещёного
-function level4() {
+/*function level4() {
+    answer.innerHTML = "";
     setTimeout(clearInterval(timerGO), 300);
     time_left.innerHTML = "<br><h2></h2>";
     timer_button.hidden = false;
-    answer.innerHTML = "Выступает: <br>" + "Новокрещенов Илья Владимирович";
+    answer2.innerHTML = "<br>" + "Новокрещенов Илья Владимирович";
     timer_pole.value = "2:00";
-}
+}*/
 
 let container_d = document.getElementById("input_dir");
 let container_u = document.getElementById("input_upr");
@@ -382,6 +402,7 @@ let btn_fill = document.getElementById("fill_data");
 let director = document.getElementById("get_dir");
 let upravlenec = document.getElementById("get_upr");
 let answer = document.getElementById("for_answer");
+let answer2 = document.getElementById("for_answer2");
 let hide_in = document.getElementById("hide_input");
 
 let dir_pole = document.getElementById("pole_dir");
@@ -395,10 +416,10 @@ let timer_pole = document.getElementById("timer");
 let time_left = document.getElementById("for_timer");
 
 
-let b1 = document.getElementById("01");
+/*let b1 = document.getElementById("01");
 let b2 = document.getElementById("02");
 let b3 = document.getElementById("03");
-let b4 = document.getElementById("04");
+let b4 = document.getElementById("04");*/
 
 
 btn_fill.onclick = fill_data;
@@ -407,19 +428,20 @@ upravlenec.onclick = get_uprav;
 hide_in.onclick = hide;
 dir_pole.onclick = change_area;
 upr_pole.onclick = change_area;
-timer_start.onclick = timer_fill;
+timer_start.onclick = timer_play_pause;
 timer_stop.onclick = timer_stopp;
 timer_button.onclick = hide_timer;
 
-b1.onclick = level1;
+/*b1.onclick = level1;
 b2.onclick = level2;
 b3.onclick = level3;
-b4.onclick = level4;
+b4.onclick = level4;*/
 
 container_u.style.display = "inline";
-
+timer_pole.value = "3:00";
 
 hide();
 hide_timer();
-level1();
+//level1();
+timer_fill();
 pre_load_fill();

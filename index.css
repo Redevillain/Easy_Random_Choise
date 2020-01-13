@@ -31,7 +31,7 @@ textarea {
 /*-------------------------*/
 
 /*Вывод ответов*/
-#for_answer {
+#for_answer, #for_answer2 {
     font-size: 3.2em;
     position:absolute;
     width:80%;
@@ -42,7 +42,7 @@ textarea {
     margin: auto;
 }
 #for_timer {
-    font-size: 3.3em;
+    font-size: 5.8em;
     position:absolute;
     width:80%;
     left: 10%;
