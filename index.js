@@ -329,7 +329,7 @@ function timer_stopp() {
     }
     dannie.timer_started = false;
     dannie.timer_going = 0;
-    timer_pole.value="3:00";
+    //timer_pole.value="3:00";
     time_left.innerHTML = "<br>" + "<h2>" + "00" + ":" + "00" + "</h2>";
     setTimeout(clearInterval(timerGO), 100);
 }
