@@ -31,13 +31,23 @@ textarea {
 /*-------------------------*/
 
 /*Вывод ответов*/
-#for_answer {
+#for_answer, #for_answer2 {
     font-size: 3.2em;
     position:absolute;
     width:80%;
     left: 10%;
     right: 10%;
     top:40%;
+    text-align: center;
+    margin: auto;
+}
+#for_timer {
+    font-size: 5.8em;
+    position:absolute;
+    width:80%;
+    left: 10%;
+    right: 10%;
+    top:60%;
     text-align: center;
     margin: auto;
 }
@@ -59,3 +69,10 @@ button {
     position: relative;
 }
 /*-------------------------*/
+#input_dir {
+    display: none;
+}
+#input_upr {
+    display: inline;
+    background-color: antiquewhite;
+}
